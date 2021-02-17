@@ -1,0 +1,117 @@
+{{!< default}}
+{{!-- Everything inside the #post tags pulls data from the post --}}
+{{#post}}
+<main id="site-main"  class="site-main outer">
+    <div class="inner">
+
+        <article class="post-full md:w-4/6 m-auto {{post_class}} {{#unless feature_image}}no-image{{/unless}}">
+
+            <header class="post-full-header">
+                {{#if feature_image}}
+                <figure class="post-full-image">
+                    {{!-- This is a responsive image, it loads different sizes depending on device
+                    https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433
+                    --}}
+                    <img srcset="{{img_url feature_image size=" s"}} 300w, {{img_url feature_image size="m" }} 600w,
+                        {{img_url feature_image size="l" }} 1000w, {{img_url feature_image size="xl" }} 2000w" sizes="(max-width: 800px) 400px,
+                        (max-width: 1170px) 1170px,
+                            2000px" src="{{img_url feature_image size=" xl"}}" alt="{{title}}" />
+                </figure>
+                {{/if}}
+                <h1 id="post-title" class="text-5xl font-serif text-center py-5">{{title}}</h1>
+                <div class="text-right py-2">
+                    <time class="published" datetime="{{date published_at format=" YYYY-MM-DD"}}">{{date published_at
+                        format="MMMM DD, YYYY"}}</time>
+                    {{#if primary_tag}}
+                    {{#primary_tag}}
+                    On
+                    <a href="{{url}}">{{name}}</a>
+                    {{/primary_tag}}
+                    {{/if}}
+                    ,
+                    <span class="reading-time">{{reading_time}}</span>
+                </div>
+            </header>
+            <section class="post-content font-sans text-base prose">
+                {{content}}
+            </section>
+
+            {{!-- Email subscribe form at the bottom of the page --}}
+            {{#if @labs.members}}
+            {{> subscribe-form}}
+            {{/if}}
+
+            {{!-- 
+                If you want to disable comments, remove following lines 
+                If you want to use it, remember to change the url in `partials/comment.hbs`
+            <section class="post-full-comments py-5">
+                {{> "comment" }}
+            </section>
+            --}}
+        </article>
+
+    </div>
+    </main>
+
+    {{!-- Links to Previous/Next posts --}}
+    <aside class="read-next outer">
+        <div class="inner">
+            <div class="read-next-feed flex flex-col md:flex-row">
+                {{#if primary_tag}}
+                {{#get "posts" filter="tags:{{primary_tag.slug}}+id:-{{id}}" limit="3" as |related_posts|}}
+                {{#if related_posts}}
+                <article class="read-next-card w-full pt-10">
+                    <header class="read-next-card-header">
+                        {{#../primary_tag}}
+                        <h3><span>{{t "More in"}}</span> <a href="{{url}}">{{name}}</a></h3>
+                        {{/../primary_tag}}
+                    </header>
+                    <div class="read-next-card-content">
+                        <ul>
+                            {{#foreach related_posts}}
+                            <li>
+                                <h4 class="text-lg font-semibold pt-8"><a href="{{url}}">{{title}}</a></h4>
+                                <div class="read-next-card-meta">
+                                    <p class="text-sm text-gray-500"><time datetime="{{date format=" YYYY-MM-DD"}}">{{date format="D MMM
+                                            YYYY"}}</time> –
+                                        {{reading_time}}</p>
+                                </div>
+                            </li>
+                            {{/foreach}}
+                        </ul>
+                    </div>
+                    <footer class="read-next-card-footer pt-8">
+                        <a href="{{#../primary_tag}}{{url}}{{/../primary_tag}}">{{plural meta.pagination.total empty='No
+                            posts' singular='% post' plural='See all % posts'}}
+                            →</a>
+                    </footer>
+                </article>
+                {{/if}}
+                {{/get}}
+                {{/if}}
+                <div class="flex flex-col pl-12">
+                    {{!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs
+                    --}}
+                    {{#next_post}}
+                    {{> "post-card"}}
+                    {{/next_post}}
+
+                    {{!-- If there's a previous post, display it using the same markup included from -
+                    partials/post-card.hbs --}}
+                    {{#prev_post}}
+                    {{> "post-card"}}
+                    {{/prev_post}}
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    {{/post}}
+
+    {{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in
+    default.hbs --}}
+    {{#contentFor "scripts"}}
+    <script>
+
+    </script>
+    {{/contentFor}}

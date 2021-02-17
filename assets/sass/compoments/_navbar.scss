@@ -1,0 +1,31 @@
+.navbar-sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    backdrop-filter: saturate(180%) blur(20px);
+    background-color: rgba(255,255,255,0.72);
+    z-index: 999;
+    transition: position 1s cubic-bezier(.19,1,.22,1);
+    @apply shadow-md;
+    .navbar-container > .navbar-menu {
+        margin-top: 0px;
+        transition: margin-top 1s cubic-bezier(.19,1,.22,1);
+    }
+}
+.navbar > .navbar-container  > .navbar-menu {
+    margin-top: 0px;
+    transition: margin-top 1s cubic-bezier(.19,1,.22,1);
+    height: $navbar-height * 2;
+}
+@media (min-width: 768px) {
+    .navbar-sticky-title {
+        .navbar-container .navbar-menu {
+            margin-top: ($navbar-height + 2) * -1;
+            max-height: max-content;
+        }
+    }
+}
+
+.navbar-sticky + .post-content {
+    margin-top: $navbar-height;
+}

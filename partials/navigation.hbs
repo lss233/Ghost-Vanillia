@@ -1,0 +1,3 @@
+{{#foreach navigation}}
+<div class="bg-transparent hover:bg-gray-100 focus:bg-gray-100 navbar-item {{link_class for=(url) class=(concat "navbar-" slug)}}"><a href="{{url absolute="true"}}">{{label}}</a></div>
+{{/foreach}}

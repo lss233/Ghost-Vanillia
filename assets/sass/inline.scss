@@ -1,0 +1,107 @@
+@tailwind base;
+
+@import './vars';
+@import './utilities/blur';
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.navbar {
+    max-height: $navbar-height * 2;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    
+    @media (min-width: 768px) {
+        max-height: $navbar-height;
+        flex-direction: row;
+    }
+    &-brand {
+        padding: 0.8em 0.9em;
+    }
+    &-container {
+        display: flex;
+        max-width: 80%;
+        margin: 0 auto;
+        flex-grow: 1;
+        align-items: stretch;
+    }
+    &-start {
+        display: flex;
+    }
+    &-item {
+        align-items: stretch;
+        padding: 0.7em 0.7em;
+        @media (min-width: 768px) {
+            padding: 0.7em 0.8em;
+        }
+    }
+    &-menu {
+        display: flex;
+        align-items: stretch;
+    }
+    
+}
+
+#container {
+    padding: 2em;
+    min-height: 80%;
+    margin: 0 auto;
+}
+#footer {
+    padding: 3em 1.75em;
+    ul {
+        display: flex;
+        li {
+            align-items: stretch;
+            padding: 0.7em;
+        }
+    }
+}
+
+.social-links {
+    &-icon {
+        display: inline-block;
+        svg {
+            height: 1.4rem;
+            fill: rgba(55, 65, 81, 1);
+        }
+    }
+    
+}
+.tag {
+    a svg {
+        height: .9rem;
+        display: inline-block;
+        transform: rotateY(180deg);
+    }
+}
+
+.afterload {
+    display: none;
+}
+.afterload-placeholder {
+    margin: 0 auto;
+    text-align: center;
+    padding: 10%;
+    position: absolute;
+    /* top: 40%; */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    font-size: 1.5em;
+    .loading::after {
+        content: '加载中……';
+    }
+    animation-delay: 8s;
+    animation: fadeIn ease 20s;
+    
+}
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+    

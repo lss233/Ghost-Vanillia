@@ -1,0 +1,12 @@
+    <div class="grid grid-flow-col w-full py-5">
+        <div class="text-left">
+            <a href="{{page_url prev}}" class="button large {{#if prev}}border-b-2 border-black p-1{{else}}disabled text-gray-600{{/if}} fit">&larr; {{t "Previous Posts"}}</a>
+        </div>
+        <div class="text-center">
+            <span>{{t "Page {page} of {pages}" page=page pages=pages}}</span>
+        </div>
+        <div class="text-right">
+            <a href="{{page_url next}}" class="button large {{#if next}}border-b-2 border-black p-1{{else}}disabled text-gray-600{{/if}} fit">{{t "Older Posts"}} &rarr;</a>
+        </div>
+
+    </div>

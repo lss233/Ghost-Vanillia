@@ -1,0 +1,19 @@
+.post-full {
+    max-width: 1000px;
+    .post-content {
+        max-width: 1000px !important;
+        @for $i from 1 through 6 {
+            h#{$i}::before {
+                @apply text-gray-500;
+                margin-right: 8px;
+                content: repeater('#', $i);
+            }
+        }
+        p {
+            img {
+                display: inline-block;
+                max-width: 35%;
+            }
+        }
+    }
+}

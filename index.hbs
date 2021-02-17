@@ -1,0 +1,64 @@
+{{!< default}}
+    {{!-- This loads cover image --}}
+    {{#if @site.cover_image }}
+    <script>
+        (function () {
+            var filter = 'linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)),';
+            function isCached(src) {
+                var img = new Image();
+                img.src = src;
+                var complete = img.complete;
+                img.src = "";
+                return complete;
+            }
+            function loadImage() {
+                document.getElementsByTagName('body')[0].classList.add('blur');
+                document.getElementsByTagName('body')[0].style.backgroundSize = 'cover';
+                document.getElementsByTagName('body')[0].style.backgroundImage = filter + 'url({{@site.cover_image}})';
+            }
+            if (isCached('{{@site.cover_image}}')) {
+                loadImage();
+            } else {
+                window.addEventListener('load', loadImage, false);
+            }
+
+        })()
+    </script>
+    {{/if}}
+
+<div class="flex flex-col lg:flex-row">
+    <div class="flex-1 py-10 text-center divide-y divide-gray-500 mr-4 md:max-w-xs">
+        <div>
+            <img src="{{@site.logo}}" alt="{{@site.title}}" class="rounded-full w-24 h-24 m-auto" />
+            <p class="text-3xl font-bold font-serif pt-2">{{@site.title}}</p>
+            <p class="text-gray-700 py-2">{{@site.description}}</p>
+            <div class="text-gray-700 inline social-links py-2">
+                {{#if @site.facebook}}
+                <a class="social-links-icon" href="{{facebook_url @site.facebook}}" title="Facebook" target="_blank"
+                    rel="noopener">{{> "icons/facebook"}}</a>
+                {{/if}}
+                {{#if @site.twitter}}
+                <a class="social-links-icon" href="{{twitter_url @site.twitter}}" title="Twitter" target="_blank"
+                    rel="noopener">{{> "icons/twitter"}}</a>
+                {{/if}}
+            </div>
+        </div>
+        <div class="divide-y divide-gray-500 hidden md:block" id="user-feeds">
+            {{> "feed" }}
+        </div>
+
+
+    </div>
+    <div class="divide-y divide-gray-500 divide-opacity-30 md:max-w-2xl md:ml-8">
+        {{#foreach posts}}
+
+        {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
+        {{>"post-card" }}
+
+        {{/foreach}}
+
+        <div class="post">
+            {{ pagination }}
+        </div>
+    </div>
+    </div>

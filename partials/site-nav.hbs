@@ -1,0 +1,25 @@
+<nav class="navbar border border-transparent" id="navbar" role="navigation">
+    <div class="navbar-container flex flex-col md:flex-row">
+        <div class="navbar-brand">
+            <a href="{{@site.url}}">
+                <span>{{@site.title}}</span>
+            </a>
+        </div>
+        <div class="navbar-menu">
+            <div class="grid grid-rows-2">
+                <div>
+                    <div class="navbar-start">
+                        {{#if @site.navigation}}
+                        {{ navigation }}
+                        {{/if}}
+                    </div>
+                    <div class="navbar-end">
+                    </div>
+                </div>
+                <div>
+                    <div id="navbar-post-title" class="navbar-item navbar-home font-semibold text-lg"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
