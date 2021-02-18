@@ -29,17 +29,7 @@ gulp.task('sass:inline-style', () => {
         .pipe(postcss([tailwindcss(), autoprefixer()]))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('assets/css'))
-        .pipe(gulp.src('assets/css/inline.css'))
-        .pipe(rename({
-            dirname: 'partials',
-            basename: 'inline-style',
-            extname: '.hbs'
-        }))
-        .pipe(header('<style>'))
-        .pipe(footer(('</style>')))
-        .pipe(gulp.dest('.'))
 })
-gulp.task('sass', gulp.series('sass:main-style', 'sass:inline-style', ))
 gulp.task('sass:inject-built-inline-style', () => {
     return gulp.src('assets/built/css/inline.css')
         .pipe(rename({
@@ -51,6 +41,18 @@ gulp.task('sass:inject-built-inline-style', () => {
         .pipe(footer(('</style>')))
         .pipe(gulp.dest('.'))
 })
+gulp.task('sass:inject-dev-inline-style', () => {
+    return gulp.src('assets/css/inline.css')
+        .pipe(rename({
+            dirname: 'partials',
+            basename: 'inline-style',
+            extname: '.hbs'
+        }))
+        .pipe(header('<style>'))
+        .pipe(footer(('</style>')))
+        .pipe(gulp.dest('.'))
+})
+gulp.task('sass', gulp.parallel(gulp.series('sass:inline-style', 'sass:inject-dev-inline-style', ), 'sass:main-style'))
 gulp.task('minify', () => {
     return gulp.src('assets/**/*')
                 .pipe(minify({
