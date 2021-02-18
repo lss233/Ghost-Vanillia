@@ -27,9 +27,9 @@
     #navbar-toc-toggle-button {
         height: 100%;
         width: 20px;
-        @apply inline-flex;
-        @apply justify-center;
-        @apply border-0;
+        display: inline-flex;
+        justify-content: center;
+        border-width: 0px;  
         @apply font-medium;
         @apply text-gray-700;
         transform-origin: center;
@@ -47,20 +47,25 @@
         content: '>';
     }
     .navbar-dropdown {
+        &.enabled {
+            display: block !important;
+        }
         position: fixed;
         backdrop-filter: saturate(180%) blur(20px);
         background-color: rgba(255,255,255,0.72);
         top: $navbar-height;
         left: 18em;
+        // This have been moved to inline.scss
+        /*
         max-height: 0;
-        @apply w-96;
+        */
+        width: 24rem;
         overflow: hidden;
         z-index: 997;
         transition: height 0.5s linear;
         #post-toc a {
-            @apply block;
-            @apply px-4;
-            @apply py-2;
+            display: block;
+            padding: 0.5rem 1rem;
             @apply text-gray-700;
 
             width: 100%;
@@ -76,7 +81,7 @@
             }
             span::before {
                 content: '•';
-                @apply pr-4;
+                padding-right: 1rem;
                 @apply text-gray-700;
             }
         }

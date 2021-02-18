@@ -1,4 +1,3 @@
-const CDN_URL = 'https://res.cloudinary.com/dunikemu8/image/upload/kblog';
 let init = () => {
     let breakpoint = (function () {
         let breakpoints = {
@@ -27,6 +26,7 @@ let init = () => {
         function updateNavbar() {
 
             var navbar = document.getElementById("navbar");
+            var navbarDropdown = document.querySelector('.navbar-dropdown')
             var navbarTitle = document.getElementById("navbar-post-title");
 
             var st = window.pageYOffset || document.documentElement.scrollTop;
@@ -44,9 +44,11 @@ let init = () => {
             } else {
                 navbar.classList.remove("navbar-sticky");
             }
-            if (window.pageYOffset >= postContent.offsetTop) {
+            if (window.pageYOffset > postContent.offsetTop) {
+                navbarDropdown.classList.add('enabled')
                 navbar.classList.add("navbar-sticky-title");
             } else {
+                navbarDropdown.classList.remove('enabled')
                 navbar.classList.remove("navbar-sticky-title");
             }
         }
@@ -136,7 +138,7 @@ let init = () => {
 };
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('img').forEach(el => {
-        el.src = el.src.replace(window.location.origin, CDN_URL)
+        el.src = el.src.replace(window.location.origin, window.CDN_URL ? window.CDN_URL : '/')
                         .replace('https://images.unsplash.com', 'https://res.cloudinary.com/dunikemu8/image/upload/unsplash');
         let srcset = el.getAttribute('srcset');
         el.setAttribute('loading', 'lazy')

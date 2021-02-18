@@ -44,6 +44,12 @@ html, body {
     }
     
 }
+@media (min-width: 768px) {
+    .navbar-dropdown {
+        max-height: 0;
+        display: none;
+    }
+}
 
 #container {
     padding: 2em;

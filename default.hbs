@@ -30,6 +30,7 @@
 <body class="{{body_class}} bg-gray-50 dark:bg-gray-800 bg-fixed">
     {{!-- This loads content --}}
     <script>
+        window.CDN_URL = 'https://res.cloudinary.com/dunikemu8/image/upload/kblog';
         (function () {
             window.addEventListener('load', () => Array.prototype.forEach.call(document.getElementsByClassName('afterload-placeholder'), i => i.classList.remove('afterload-placeholder')));
             window.addEventListener('load', () => Array.prototype.forEach.call(document.getElementsByClassName('afterload'), i => i.classList.remove('afterload')));
