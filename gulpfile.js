@@ -51,7 +51,7 @@ gulp.task('sass:inject-built-inline-style', () => {
         .pipe(footer(('</style>')))
         .pipe(gulp.dest('.'))
 })
-gulp.task('zip', gulp.series('sass', () => {
+gulp.task('package', gulp.series('build', () => {
     var targetDir = 'dist/';
     var themeName = require('./package.json').name;
     var filename = themeName + '.zip';
