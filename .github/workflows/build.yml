@@ -1,0 +1,35 @@
+name: Build
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      # Runs a single command using the runners shell
+      - name: Install dependencies
+        run: |
+          yarn
+          yarn global add gulp-cli
+      - name: Build files
+        run: yarn build
+      - name: Commit branch
+        run: |
+          git add .
+          git add -f assets/built
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m "Built for ${{ github.sha }}" -a
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: built
+          force: true
