@@ -39,7 +39,7 @@ gulp.task('sass:inline-style', () => {
         .pipe(footer(('</style>')))
         .pipe(gulp.dest('.'))
 })
-gulp.task('sass', gulp.parallel('sass:inline-style', 'sass:main-style'))
+gulp.task('sass', gulp.series('sass:main-style', 'sass:inline-style', ))
 gulp.task('sass:inject-built-inline-style', () => {
     return gulp.src('assets/built/css/inline.css')
         .pipe(rename({
