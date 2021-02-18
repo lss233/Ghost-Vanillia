@@ -2,3 +2,7 @@ node_modules/
 dist/
 assets/built/
 yarn-error.log
+
+# Since these are all generated files
+assets/css/
+partials/inline-style.hbs
