@@ -4,7 +4,7 @@
     width: 100%;
     backdrop-filter: saturate(180%) blur(20px);
     background-color: rgba(255,255,255,0.72);
-    z-index: 999;
+    z-index: 998;
     transition: position 1s cubic-bezier(.19,1,.22,1);
     @apply shadow-md;
     .navbar-container > .navbar-menu {
@@ -24,8 +24,69 @@
             max-height: max-content;
         }
     }
-}
+    #navbar-toc-toggle-button {
+        height: 100%;
+        width: 20px;
+        @apply inline-flex;
+        @apply justify-center;
+        @apply border-0;
+        @apply font-medium;
+        @apply text-gray-700;
+        transform-origin: center;
+        transform: rotate(0deg);
+        transition: transform $navbar-toggle-delay ease-in-out;
+        &:hover {
+            @include animation-twise;
+        }
+        &:focus, &:active {
+            transform: rotate(90deg);
+            @apply outline-none;
+        }
+    }
+    #navbar-toc-toggle-button::after {
+        content: '>';
+    }
+    .navbar-dropdown {
+        position: fixed;
+        backdrop-filter: saturate(180%) blur(20px);
+        background-color: rgba(255,255,255,0.72);
+        top: $navbar-height;
+        left: 18em;
+        max-height: 0;
+        @apply w-96;
+        overflow: hidden;
+        z-index: 997;
+        transition: height 0.5s linear;
+        #post-toc a {
+            @apply block;
+            @apply px-4;
+            @apply py-2;
+            @apply text-gray-700;
 
+            width: 100%;
+            display: -webkit-box;
+            overflow: hidden;
+
+            -webkit-line-clamp: 1;
+            -webkit-box-direction: vertical;
+            &:hover {
+                @apply bg-gray-100;
+                @apply text-gray-900;
+                --tw-bg-opacity: 0.4;
+            }
+            span::before {
+                content: '•';
+                @apply pr-4;
+                @apply text-gray-700;
+            }
+        }
+        &.show {
+            max-height: 500px;
+            transition: max-height 0.5s linear;
+        }
+    }
+    
+}
 .navbar-sticky + .post-content {
     margin-top: $navbar-height;
 }

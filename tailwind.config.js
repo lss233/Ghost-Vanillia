@@ -1,6 +1,5 @@
 module.exports = {
   purge: {
-    enabled: true,
     content: [
       './assets/js/*.js',
       './*.hbs',

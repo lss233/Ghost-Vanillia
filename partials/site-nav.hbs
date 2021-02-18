@@ -17,9 +17,17 @@
                     </div>
                 </div>
                 <div>
-                    <div id="navbar-post-title" class="navbar-item navbar-home font-semibold text-lg"></div>
+                    <div class="navbar-item font-semibold text-lg">
+                        <button id="navbar-toc-toggle-button" aria-labelledfor="options-menu" aria-haspopup="true"
+                            aria-expanded="true"></button>
+                        <span id="navbar-post-title"></span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </nav>
+<div class="rounded-md ring-opacity-5 ring-black ring-1 navbar-dropdown" role="menu" aria-labelledby="options-menu">
+    <div class="p-4" id="post-toc">
+    </div>
+</div>

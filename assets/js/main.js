@@ -1,6 +1,3 @@
-(function () {
-
-})()
 window.addEventListener('load', () => {
     let breakpoint = (function () {
         let breakpoints = {
@@ -22,7 +19,7 @@ window.addEventListener('load', () => {
     console.log(breakpoint)
 
     // Initialize sticky navbar
-    let postContent = document.getElementsByClassName('post-content')[0];
+    let postContent = document.querySelector('.post-content');
     if (postContent) {
         window.addEventListener('scroll', updateNavbar)
         var lastScrollTop = 0;
@@ -34,7 +31,7 @@ window.addEventListener('load', () => {
             var st = window.pageYOffset || document.documentElement.scrollTop;
             let isScrollDown = st > lastScrollTop;
             lastScrollTop = st <= 0 ? 0 : st;
-            if(breakpoint == 'xs') {
+            if (breakpoint == 'xs') {
                 navbar.classList.remove("navbar-sticky");
                 return;
             }
@@ -52,7 +49,89 @@ window.addEventListener('load', () => {
                 navbar.classList.remove("navbar-sticky-title");
             }
         }
-        updateNavbar();
+        let navbarTocToggleButton = document.getElementById('navbar-toc-toggle-button');
+        if (navbarTocToggleButton) {
+            let dropdown = document.querySelector(`[aria-labelledby="${navbarTocToggleButton.getAttribute('aria-labelledfor')}"]`)
+            let navigate = undefined;
+            navbarTocToggleButton.addEventListener('click', (e) => {
+                if (dropdown.classList.contains('show')) {
+                    document.activeElement.blur();
+                } else {
+                    setInterval(dropdown.classList.add('show'), 1000);
+                }
+            })
+            navbarTocToggleButton.addEventListener('focusout', (e) => {
+                dropdown.classList.remove('show')
+                console.log(navigate)
+                if(navigate) {
+                    document.getElementById(navigate.getAttribute('data-labelledfor')).scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    })
+                    navigate = undefined;
+                }
+            })
+
+            // Make toc
+            let tocTree = [], currentStack = undefined
+            Array.prototype.map.call(postContent.querySelectorAll('h1,h2,h3'), e => [parseInt(e.tagName.substring(1, 2)), e.textContent, e.id])
+                .forEach(i => {
+                    if (currentStack === undefined) {
+                        currentStack = { el: i, children: [] }
+                    } else {
+                        let cursor = currentStack;
+                        while (true) {
+                            if (i[0] > cursor.el[0]) {
+                                cursor.children.push({
+                                    el: i,
+                                    children: []
+                                })
+                                return;
+                            } else if (cursor.children.length === 0) {
+                                tocTree.push(currentStack), currentStack = { el: i, children: [] };
+                                return;
+                            } else {
+                                cursor = cursor.children[cursor.children.length - 1];
+                            }
+
+                        }
+                    }
+                })
+            tocTree.push(currentStack);
+            let overlay = document.createElement('div');
+            overlay.classList.add('overlay')
+            function dfs(array, masterNode, level) {
+                if (array.length === 0) return;
+                let prefix = '';
+                for (let i = 0; i < level; prefix += '\u00A0\u00A0\u00A0', i++);
+                for (let el of array) {
+                    let link = document.createElement('a');
+                    let span = document.createElement('span');
+                    span.textContent = el.el[1];
+                    link.textContent = prefix;
+                    link.setAttribute('href', '#' + el.el[2]);
+                    link.setAttribute('data-labelledfor', el.el[2])
+                    link.appendChild(span);
+                    link.addEventListener('mousemove', () => {
+                        console.log(link)
+                        navigate = link;
+                    });
+                    link.addEventListener('mouseleave', () => {
+                        if(navigate === link)
+                            navigate = undefined;
+                    });
+                    masterNode.appendChild(link);
+                    dfs(el.children, masterNode, level + 1);
+                }
+            }
+            let masterNode = document.querySelector('#post-toc');
+
+            dfs(tocTree, masterNode, 0);
+
+
+            updateNavbar();
+        }
+
     }
 
 });

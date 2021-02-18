@@ -1,10 +1,14 @@
 <div class="grid grid-cols-3 feed text-left text-sm py-4" style="display: none;">
     <div>
-        <img src="{{asset 'img/github.svg'}}" alt="" class="feed-icon rounded-full">
+        <a class="feed-link" href="#" target="_blank">
+            <img src="{{asset 'img/github.svg'}}" alt="" class="feed-icon rounded-full">
+        </a>
     </div>
     <div class="col-start-2 col-end-4">
-        <p class="feed-title text-gray-900">Lss233 pushed to master in lss233/Ghost-FutureImperfect</p>
-        <time class="feed-date text-gray-800 text-xs" datetime="2021-02-17"></time>
+        <a class="feed-link" href="#" target="_blank">
+            <p class="feed-title text-gray-900">Lss233 pushed to master in lss233/Ghost-FutureImperfect</p>
+            <time class="feed-date text-gray-800 text-xs" datetime="2021-02-17"></time>
+        </a>
     </div>
 </div>
 <script>
@@ -32,9 +36,11 @@
             for(let el of res) {
                 let feed = template.cloneNode(true);
                 feed.querySelector('.feed-icon').setAttribute('src', imgBaseUrl + sourceIcon[el.source] + '.svg')
+                feed.querySelector('.feed-icon').setAttribute('alt', el.source)
                 feed.querySelector('.feed-title').textContent = el.title
                 feed.querySelector('.feed-date').setAttribute('datetime', el.date)
                 feed.querySelector('.feed-date').textContent = (new Date(el.date)).toLocaleDateString('en')
+                feed.querySelector('.feed-link').setAttribute('href', el.link)
                 feed.style.display = 'grid';
                 list.append(feed);
             }
