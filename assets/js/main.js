@@ -65,7 +65,6 @@ let init = () => {
             })
             navbarTocToggleButton.addEventListener('focusout', (e) => {
                 dropdown.classList.remove('show')
-                console.log(navigate)
                 if(navigate) {
                     document.getElementById(navigate.getAttribute('data-labelledfor')).scrollIntoView({
                         behavior: 'smooth',
