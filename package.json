@@ -6,7 +6,8 @@
     "ghost-api": "v3"
   },
   "scripts": {
-    "dev": "gulp --max_old_space_size=2000"
+    "dev": "gulp --max_old_space_size=2000",
+    "build": "gulp build"
   },
   "repository": "https://github.com/lss233/Ghost-Vanilla",
   "author": {
@@ -25,6 +26,7 @@
     "gulp": "^4.0.2",
     "gulp-footer": "^2.0.2",
     "gulp-header": "^2.0.9",
+    "gulp-minifier": "^3.5.0",
     "gulp-postcss": "^9.0.0",
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^4.1.0",
@@ -37,6 +39,7 @@
     "tailwindcss": "^2.0.3"
   },
   "dependencies": {
-    "feather-icons": "^4.28.0"
+    "feather-icons": "^4.28.0",
+    "gulp-string-replace": "^1.1.2"
   }
 }
