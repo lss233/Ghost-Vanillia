@@ -1,4 +1,5 @@
-window.addEventListener('load', () => {
+const CDN_URL = 'https://res.cloudinary.com/dunikemu8/image/upload/kblog';
+let init = () => {
     let breakpoint = (function () {
         let breakpoints = {
             '(min-width: 1200px)': 'xl',
@@ -127,11 +128,27 @@ window.addEventListener('load', () => {
             let masterNode = document.querySelector('#post-toc');
 
             dfs(tocTree, masterNode, 0);
-
-
             updateNavbar();
         }
 
     }
 
+};
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('img').forEach(el => {
+        el.src = el.src.replace(window.location.origin, CDN_URL)
+                        .replace('https://images.unsplash.com', 'https://res.cloudinary.com/dunikemu8/image/upload/unsplash');
+        let srcset = el.getAttribute('srcset');
+        el.setAttribute('loading', 'lazy')
+        if(srcset) {
+            el.setAttribute('srcset', srcset.replace(window.location.origin, CDN_URL))
+        }
+    })
 });
+if (document.readyState === 'loading') {
+    window.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}
+
+
