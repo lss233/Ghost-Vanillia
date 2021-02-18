@@ -51,19 +51,6 @@ gulp.task('sass:inject-built-inline-style', () => {
         .pipe(footer(('</style>')))
         .pipe(gulp.dest('.'))
 })
-gulp.task('package', gulp.series('build', () => {
-    var targetDir = 'dist/';
-    var themeName = require('./package.json').name;
-    var filename = themeName + '.zip';
-
-    return gulp.src([
-        '**',
-        '!node_modules', '!node_modules/**',
-        '!dist', '!dist/**'
-    ])
-        .pipe(zip(filename))
-        .pipe(gulp.dest(targetDir));
-}))
 gulp.task('minify', () => {
     return gulp.src('assets/**/*')
                 .pipe(minify({
@@ -92,6 +79,19 @@ gulp.task('env:production', done => {
 })
 gulp.task('build', gulp.series('env:production', 'sass', 'minify', 'sass:inject-built-inline-style', 'use-built-assets'))
 
+gulp.task('package', gulp.series('build', () => {
+    var targetDir = 'dist/';
+    var themeName = require('./package.json').name;
+    var filename = themeName + '.zip';
+
+    return gulp.src([
+        '**',
+        '!node_modules', '!node_modules/**',
+        '!dist', '!dist/**'
+    ])
+        .pipe(zip(filename))
+        .pipe(gulp.dest(targetDir));
+}))
 gulp.task('default', gulp.series(() => {
     console.log('Watching files...')
     chokidar.watch('assets/css/inline.css', { usePolling: true }).on('change', (e) => {
