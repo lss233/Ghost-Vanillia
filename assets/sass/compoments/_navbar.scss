@@ -47,8 +47,10 @@
         content: '>';
     }
     .navbar-dropdown {
-        &.enabled {
-            display: block !important;
+        @media (min-width: 768px) {
+            &.enabled {
+                display: block !important;
+            }
         }
         position: fixed;
         backdrop-filter: saturate(180%) blur(20px);
