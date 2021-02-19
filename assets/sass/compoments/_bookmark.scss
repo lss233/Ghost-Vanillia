@@ -11,19 +11,19 @@
 
     .kg-bookmark-container {
         min-height: 148px;
-        @apply overflow-hidden;
-
-        @apply grid;
-        @apply grid-cols-3;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-direction: column-reverse;
+        @media (min-width: 768px) {
+            flex-direction: row;
+        }
+        overflow: hidden;
     }
     .kg-bookmark-content {
         @apply p-4;
         @apply col-start-1;
         @apply col-end-3;
-        /*
-        @apply grid;
-        @apply grid-rows-3;
-        */
 
         .kg-bookmark-title {
             @apply py-1;
@@ -59,9 +59,20 @@
     img {
         margin: 0;
     }
-    .kg-bookmark-thumbnail img {
-        margin-left: auto;
-        max-width: fit-content;
-        max-height: 152px;
+    .kg-bookmark-thumbnail {
+        width: 100%;
+        max-width: 100%;
+        @media (min-width: 768px) {
+            max-width: 33%;
+        }
+        img {
+            margin-left: auto;
+            
+            @media (min-width: 768px) {
+                max-height: 152px;
+            }
+            
+            width: 100%;
+        }
     }
 }
