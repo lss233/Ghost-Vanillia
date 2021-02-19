@@ -16,7 +16,6 @@ let init = () => {
 
         return null;
     })()
-    console.log(breakpoint)
 
     // Initialize sticky navbar
     let postContent = document.querySelector('.post-content');
@@ -66,7 +65,7 @@ let init = () => {
             navbarTocToggleButton.addEventListener('focusout', (e) => {
                 dropdown.classList.remove('show')
                 if(navigate) {
-                    document.getElementById(navigate.getAttribute('data-labelledfor')).scrollIntoView({
+                    navigate.scrollIntoView({
                         behavior: 'smooth',
                         block: 'center'
                     })
@@ -76,7 +75,7 @@ let init = () => {
 
             // Make toc
             let tocTree = [], currentStack = undefined
-            Array.prototype.map.call(postContent.querySelectorAll('h1,h2,h3'), e => [parseInt(e.tagName.substring(1, 2)), e.textContent, e.id])
+            Array.prototype.map.call(postContent.querySelectorAll('h1,h2,h3'), e => [parseInt(e.tagName.substring(1, 2)), e.textContent, e.id, e])
                 .forEach(i => {
                     if (currentStack === undefined) {
                         currentStack = { el: i, children: [] }
@@ -115,8 +114,7 @@ let init = () => {
                     link.setAttribute('data-labelledfor', el.el[2])
                     link.appendChild(span);
                     link.addEventListener('mousemove', () => {
-                        console.log(link)
-                        navigate = link;
+                        navigate = el.el[3];
                     });
                     link.addEventListener('mouseleave', () => {
                         if(navigate === link)
