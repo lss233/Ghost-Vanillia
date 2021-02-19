@@ -128,10 +128,35 @@
     <link rel="stylesheet" type="text/css" href="{{asset 'css/main.css'}}" media="print"
         onload="this.media='all';_forceLoad()">
     <noscript>
-        <link rel="stylesheet" href="{{asset 'css/main.css'}}">
+        <link rel="stylesheet" href="{{asset 'css/main.css'}}" defer>
     </noscript>
 
     <script src="{{asset 'js/main.js'}}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let replaceSrc = (s) => {
+                if(window.CDN_URL === undefined) return s;
+                if(s.startsWith('/')) {
+                    return window.CDN_URL + s;
+                } else {
+                    return s.replace(window.location.origin, window.CDN_URL)
+                }
+            }
+            document.querySelectorAll('img').forEach(el => {
+                el.src = replaceSrc(el.src)
+                    .replace('https://images.unsplash.com', 'https://res.cloudinary.com/dunikemu8/image/upload/unsplash');
+                let srcset = el.getAttribute('srcset');
+                if (srcset) {
+                    el.setAttribute('srcset', replaceSrc(srcset).replaceAll(window.location.origin, CDN_URL))
+                }
+                let dataSrc = el.getAttribute('data-src');
+                if(dataSrc) {
+                    el.src = replaceSrc(dataSrc)
+                }
+                el.setAttribute('loading', 'lazy')
+            })
+        });
+    </script>
     {{!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some
     JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already
     loaded. --}}
