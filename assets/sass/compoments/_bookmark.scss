@@ -5,6 +5,10 @@
     @apply rounded-md;
     @apply shadow-md;
 
+    @media (min-width: 768px) {
+        height: 150px;
+    }
+
     a {
         text-decoration: inherit;
     }
@@ -16,31 +20,37 @@
         justify-content: flex-start;
         flex-direction: column-reverse;
         @media (min-width: 768px) {
+            align-items: stretch;
+            justify-content: space-between;
             flex-direction: row;
         }
         overflow: hidden;
     }
     .kg-bookmark-content {
-        @apply p-4;
-        @apply col-start-1;
-        @apply col-end-3;
+        padding: 1rem;
+        display: grid;
 
         .kg-bookmark-title {
-            @apply py-1;
+            padding: 0.25rem 0;
         }
         .kg-bookmark-description {
-            @apply py-1;
+            padding: 0.25rem 0;
             display: -webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 2;
 
             max-height: 48px;
+            overflow-y: hidden;
+
             @apply text-sm;
             @apply text-gray-500;
-            @apply overflow-y-hidden;
         }
         .kg-bookmark-metadata {
-            @apply py-2;
+            padding: 0.5rem 0;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+
             .kg-bookmark-icon {
                 @apply inline-block;
                 @apply rounded-full;
@@ -48,11 +58,15 @@
                 @apply h-5;
                 @apply mr-2;
             }
+            .kg-bookmark-author {
+                @apply text-gray-600;
+
+            }
             .kg-bookmark-publisher {
                 &::before {
                     content: '@'
                 }
-                @apply pl-2;
+                padding-left: 0.5rem;
             }
         }
     }
@@ -67,12 +81,13 @@
         }
         img {
             margin-left: auto;
+            width: 100%;
             
             @media (min-width: 768px) {
-                max-height: 152px;
+                height: 152px;
+                width: auto;
             }
             
-            width: 100%;
         }
     }
 }
