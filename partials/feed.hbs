@@ -40,7 +40,7 @@
                 feed.querySelector('.feed-title').textContent = el.title
                 feed.querySelector('.feed-date').setAttribute('datetime', el.date)
                 feed.querySelector('.feed-date').textContent = (new Date(el.date)).toLocaleDateString('en')
-                feed.querySelector('.feed-link').setAttribute('href', el.link)
+                feed.querySelectorAll('.feed-link').forEach(i => i.setAttribute('href', el.link));
                 feed.style.display = 'grid';
                 list.append(feed);
             }
