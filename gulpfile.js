@@ -1,18 +1,21 @@
 const gulp = require('gulp'),
     zip = require('gulp-zip'),
     sass = require('gulp-sass'),
-    header = require('gulp-header'),
-    footer = require('gulp-footer'),
-    rename = require('gulp-rename'),
     minify = require('gulp-minifier'),
     postcss = require('gulp-postcss'),
     tailwindcss = require('tailwindcss'),
     sourcemaps = require('gulp-sourcemaps'),
-    replace = require('gulp-string-replace')
+    replace = require('gulp-string-replace'),
+    inlinesource = require('gulp-inline-source')
 autoprefixer = require("autoprefixer"),
     chokidar = require('chokidar');
 
 sass.compiler = require('node-sass');
+
+gulp.task('env:production', done => {
+    process.env.NODE_ENV = 'production';
+    done();
+})
 
 gulp.task('sass:main-style', () => {
     return gulp.src('assets/sass/main.scss')
@@ -30,6 +33,9 @@ gulp.task('sass:inline-style', () => {
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('assets/css'))
 })
+
+gulp.task('sass', gulp.parallel('sass:inline-style', 'sass:main-style'))
+/*
 gulp.task('sass:inject-built-inline-style', () => {
     return gulp.src('assets/built/css/inline.css')
         .pipe(rename({
@@ -52,7 +58,7 @@ gulp.task('sass:inject-dev-inline-style', () => {
         .pipe(footer(('</style>')))
         .pipe(gulp.dest('.'))
 })
-gulp.task('sass', gulp.parallel(gulp.series('sass:inline-style', 'sass:inject-dev-inline-style', ), 'sass:main-style'))
+*/
 gulp.task('minify', () => {
     return gulp.src('assets/**/*')
                 .pipe(minify({
@@ -65,21 +71,21 @@ gulp.task('minify', () => {
                 }))
                 .pipe(gulp.dest('assets/built'))
 })
-gulp.task('use-built-assets', () => gulp.src('./default.hbs')
-    .pipe(replace(`href="{{asset 'css/main.css'}}"`, `href="{{asset 'built/css/main.css'}}"`))
-    .pipe(replace(`src="{{asset 'js/main.js'}}"`, `src="{{asset 'built/js/main.js'}}"`))
+gulp.task('use-built-assets', () => gulp.src('./**/*.hbs')
+    .pipe(replace(`css/`, `built/css/`))
+    .pipe(replace(`js/`, `built/js/`))
     .pipe(gulp.dest('.'))
 )
-gulp.task('use-dev-assets', () => gulp.src('./default.hbs')
-    .pipe(replace(`href="{{asset 'built/css/main.css'}}"`, `href="{{asset 'css/main.css'}}"`))
-    .pipe(replace(`src="{{asset 'built/js/main.js'}}"`, `src="{{asset 'js/main.js'}}"`))
+gulp.task('use-dev-assets', () => gulp.src('./**/*.hbs')
+    .pipe(replace(`built/css/`, `css/`))
+    .pipe(replace(`built/js/`, `js/`))
     .pipe(gulp.dest('.'))
 )
-gulp.task('env:production', done => {
-    process.env.NODE_ENV = 'production';
-    done();
-})
-gulp.task('build', gulp.series('env:production', 'sass', 'minify', 'sass:inject-built-inline-style', 'use-built-assets'))
+gulp.task('inline-sources', () => gulp.src('./**/*.hbs')
+    .pipe(inlinesource())
+    .pipe(gulp.dest('.'))
+)
+gulp.task('build', gulp.series('env:production', 'sass', 'minify', 'use-built-assets', 'inline-sources'))
 
 gulp.task('package', gulp.series('build', () => {
     var targetDir = 'dist/';
@@ -94,7 +100,13 @@ gulp.task('package', gulp.series('build', () => {
         .pipe(zip(filename))
         .pipe(gulp.dest(targetDir));
 }))
+gulp.task('default', (done) => {
+    gulp.watch('assets/sass/**/*', { usePolling: true, ignoreInitial: false }, gulp.series('sass'))
+})
+/*
 gulp.task('default', gulp.series(() => {
+    return gulp.series('watch')
+    /*
     console.log('Watching files...')
     chokidar.watch('assets/css/inline.css', { usePolling: true }).on('change', (e) => {
         console.log(e)
@@ -124,4 +136,5 @@ gulp.task('default', gulp.series(() => {
             .pipe(sourcemaps.write())
             .pipe(gulp.dest('assets/css'))
     })
-}));
+    */
+//}));
