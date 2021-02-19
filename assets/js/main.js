@@ -62,9 +62,32 @@ let init = () => {
                     setInterval(dropdown.classList.add('show'), 1000);
                 }
             })
+            let lastObservedAt = performance.now();
+            let io = new IntersectionObserver(
+                entries => {
+                    entries.forEach(entry => {
+                        if(entry.isIntersecting) {
+                            io.unobserve(entry.target);
+                            if(entry.time - lastObservedAt < 100) {
+                                setTimeout(() => entry.target.classList.remove('bg-yellow-400'), 800);
+                            } else {
+                                entry.target.classList.remove('bg-yellow-400')
+                            }
+                            lastObservedAt = entry.time;
+                        }
+                    })
+                }
+            );
             navbarTocToggleButton.addEventListener('focusout', (e) => {
                 dropdown.classList.remove('show')
-                if(navigate) {
+                if (navigate) {
+                    if(io) {
+                        io.disconnect()
+                    }
+                    navigate.classList.add('bg-yellow-400');
+                    navigate.style.transition = 'background-color .8s cubic-bezier(.61,.13,.44,.88)';
+                    io.observe(navigate);
+                    lastObservedAt = performance.now()
                     navigate.scrollIntoView({
                         behavior: 'smooth',
                         block: 'center'
@@ -117,7 +140,7 @@ let init = () => {
                         navigate = el.el[3];
                     });
                     link.addEventListener('mouseleave', () => {
-                        if(navigate === link)
+                        if (navigate === link)
                             navigate = undefined;
                     });
                     masterNode.appendChild(link);
@@ -136,10 +159,10 @@ let init = () => {
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('img').forEach(el => {
         el.src = el.src.replace(window.location.origin, window.CDN_URL ? window.CDN_URL : '/')
-                        .replace('https://images.unsplash.com', 'https://res.cloudinary.com/dunikemu8/image/upload/unsplash');
+            .replace('https://images.unsplash.com', 'https://res.cloudinary.com/dunikemu8/image/upload/unsplash');
         let srcset = el.getAttribute('srcset');
         el.setAttribute('loading', 'lazy')
-        if(srcset) {
+        if (srcset) {
             el.setAttribute('srcset', srcset.replace(window.location.origin, CDN_URL))
         }
     })
