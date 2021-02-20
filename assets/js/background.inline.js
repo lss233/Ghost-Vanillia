@@ -19,7 +19,7 @@
         document.getElementsByTagName('body')[0].style.backgroundSize = 'cover';
         document.getElementsByTagName('body')[0].style.backgroundImage = filter + `url(${cover_image})`;
     }
-    window._loadBackground = loadImage;
+    window._sys.loadBackground = loadImage;
     if (isCached(cover_image)) {
         loadImage();
     } else {
