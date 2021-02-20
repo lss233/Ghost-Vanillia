@@ -11,18 +11,15 @@ html, body {
 .navbar {
     max-height: $navbar-height * 2;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    
-    @media (min-width: 768px) {
-        max-height: $navbar-height;
-        flex-direction: row;
-    }
+
     &-brand {
+        display: flex;
         padding: 0.8em 0.9em;
         .toggle-dark {
+            display: inline;
+            margin-left: auto;
             @media (min-width: 768px) {
-                display: none;;                
+                display: none;              
             }
         }
     }
@@ -32,6 +29,14 @@ html, body {
         margin: 0 auto;
         flex-grow: 1;
         align-items: stretch;
+
+        display: flex;
+        flex-direction: column;
+        
+        @media (min-width: 768px) {
+            max-height: $navbar-height;
+            flex-direction: row;
+        }
     }
     &-start {
         display: flex;
@@ -46,6 +51,10 @@ html, body {
     &-menu {
         display: flex;
         align-items: stretch;
+    }
+
+    .toggle-dark {
+        transform: rotate(-45deg);
     }
     
 }

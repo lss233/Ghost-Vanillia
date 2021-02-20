@@ -17,83 +17,80 @@
     transition: margin-top 1s cubic-bezier(.19,1,.22,1);
     height: $navbar-height * 2;
 }
-    .navbar-sticky-title {
-        .navbar-container > .navbar-menu > .navbar-start {
-            margin-top: ($navbar-height + 2) * -1;
-            max-height: max-content;
-        }
+.navbar-sticky-title {
+    .navbar-container > .navbar-menu > .navbar-start {
+        margin-top: ($navbar-height + 2) * -1;
+        max-height: max-content;
     }
-    #navbar-toc-toggle-button {
-        height: 100%;
-        width: 20px;
-        display: inline-flex;
-        justify-content: center;
-        border-width: 0px;  
-        @apply font-medium;
-        @apply text-gray-700;
-        transform-origin: center;
-        transform: rotate(0deg);
-        transition: transform $navbar-toggle-delay ease-in-out;
-        &:hover {
-            @include animation-twise;
-        }
-        &:focus, &:active {
-            transform: rotate(90deg);
-            @apply outline-none;
-        }
-    }
-    #navbar-toc-toggle-button::after {
-        content: '>';
-    }
-    .navbar-dropdown {
-        @media (min-width: 768px) {
-            &.enabled {
-                display: block !important;
-            }
-        }
-        position: fixed;
-        backdrop-filter: saturate(180%) blur(20px);
-        top: $navbar-height;
-        left: 18em;
-        // This have been moved to inline.scss
-        /*
-        max-height: 0;
-        */
-        width: 24rem;
-        overflow: hidden;
-        z-index: 997;
-        transition: height 0.5s linear;
-        #post-toc a {
-            display: block;
-            padding: 0.5rem 1rem;
-            @apply text-gray-700;
-
-            width: 100%;
-            display: -webkit-box;
-            overflow: hidden;
-
-            -webkit-line-clamp: 1;
-            -webkit-box-direction: vertical;
-            &:hover {
-                @apply bg-gray-100;
-                @apply text-gray-900;
-                --tw-bg-opacity: 0.4;
-            }
-            span::before {
-                content: '•';
-                padding-right: 1rem;
-                @apply text-gray-700;
-            }
-        }
-        &.show {
-            max-height: 500px;
-            transition: max-height 0.5s linear;
-        }
-    }
-
-.toggle-dark {
-    transform: rotate(-45deg);
 }
+#navbar-toc-toggle-button {
+    height: 100%;
+    width: 20px;
+    display: inline-flex;
+    justify-content: center;
+    border-width: 0px;  
+    @apply font-medium;
+    @apply text-gray-700;
+    transform-origin: center;
+    transform: rotate(0deg);
+    transition: transform $navbar-toggle-delay ease-in-out;
+    &:hover {
+        @include animation-twise;
+    }
+    &:focus, &:active {
+        transform: rotate(90deg);
+        @apply outline-none;
+    }
+}
+#navbar-toc-toggle-button::after {
+    content: '>';
+}
+.navbar-dropdown {
+    @media (min-width: 768px) {
+        &.enabled {
+            display: block !important;
+        }
+    }
+    position: fixed;
+    backdrop-filter: saturate(180%) blur(20px);
+    top: $navbar-height;
+    left: 18em;
+    // This have been moved to inline.scss
+    /*
+    max-height: 0;
+    */
+    width: 24rem;
+    overflow: hidden;
+    z-index: 997;
+    transition: height 0.5s linear;
+    #post-toc a {
+        display: block;
+        padding: 0.5rem 1rem;
+        @apply text-gray-700;
+
+        width: 100%;
+        display: -webkit-box;
+        overflow: hidden;
+
+        -webkit-line-clamp: 1;
+        -webkit-box-direction: vertical;
+        &:hover {
+            @apply bg-gray-100;
+            @apply text-gray-900;
+            --tw-bg-opacity: 0.4;
+        }
+        span::before {
+            content: '•';
+            padding-right: 1rem;
+            @apply text-gray-700;
+        }
+    }
+    &.show {
+        max-height: 500px;
+        transition: max-height 0.5s linear;
+    }
+}
+
 .navbar-sticky ~ #container {
     margin-top: $navbar-height;
 }
