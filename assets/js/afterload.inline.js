@@ -45,6 +45,7 @@ window.CDN_URL = 'https://res.cloudinary.com/dunikemu8/image/upload/kblog';
             document.documentElement.classList.remove('dark');
             window.localStorage.setItem('nightwind-mode', 'light');
         }
+        window._sys.colorMode = getInitialColorMode()
         if(window._sys.loadBackgroundImage) {
             window._sys.loadBackgroundImage();
         }
