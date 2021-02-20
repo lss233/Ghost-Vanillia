@@ -3006,6 +3006,13 @@ next-tick@~1.0.0:
   resolved "https://registry.npm.taobao.org/next-tick/download/next-tick-1.0.0.tgz?cache=0&sync_timestamp=1581393946534&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fnext-tick%2Fdownload%2Fnext-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
+nightwind@^1.1.6:
+  version "1.1.6"
+  resolved "https://registry.npm.taobao.org/nightwind/download/nightwind-1.1.6.tgz#c6c25069406ef7e4369bac46d73ea9bffa9d3a1a"
+  integrity sha1-xsJQaUBu9+Q2m6xG1z6pv/qdOho=
+  dependencies:
+    tailwindcss "^2.0.0"
+
 no-case@^3.0.4:
   version "3.0.4"
   resolved "https://registry.npm.taobao.org/no-case/download/no-case-3.0.4.tgz#d361fd5c9800f558551a8369fc0dcd4662b6124d"
@@ -4412,7 +4419,7 @@ svgo@~1.2.2:
     unquote "~1.1.1"
     util.promisify "~1.0.0"
 
-tailwindcss@^2.0.3:
+tailwindcss@^2.0.0, tailwindcss@^2.0.3:
   version "2.0.3"
   resolved "https://registry.npm.taobao.org/tailwindcss/download/tailwindcss-2.0.3.tgz#f8d07797d1f89dc4b171673c26237b58783c2c86"
   integrity sha1-+NB3l9H4ncSxcWc8JiN7WHg8LIY=

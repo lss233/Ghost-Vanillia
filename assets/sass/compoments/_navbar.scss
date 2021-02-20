@@ -3,23 +3,22 @@
     top: 0;
     width: 100%;
     backdrop-filter: saturate(180%) blur(20px);
-    background-color: rgba(255,255,255,0.72);
+    // background-color: rgba(255,255,255,0.72);
     z-index: 998;
     transition: position 1s cubic-bezier(.19,1,.22,1);
     @apply shadow-md;
-    .navbar-container > .navbar-menu {
+    .navbar-container > .navbar-menu > .navbar-start {
         margin-top: 0px;
         transition: margin-top 1s cubic-bezier(.19,1,.22,1);
     }
 }
-.navbar > .navbar-container  > .navbar-menu {
+.navbar > .navbar-container  > .navbar-menu > .navbar-start {
     margin-top: 0px;
     transition: margin-top 1s cubic-bezier(.19,1,.22,1);
     height: $navbar-height * 2;
 }
-@media (min-width: 768px) {
     .navbar-sticky-title {
-        .navbar-container .navbar-menu {
+        .navbar-container > .navbar-menu > .navbar-start {
             margin-top: ($navbar-height + 2) * -1;
             max-height: max-content;
         }
@@ -54,7 +53,6 @@
         }
         position: fixed;
         backdrop-filter: saturate(180%) blur(20px);
-        background-color: rgba(255,255,255,0.72);
         top: $navbar-height;
         left: 18em;
         // This have been moved to inline.scss
@@ -92,8 +90,10 @@
             transition: max-height 0.5s linear;
         }
     }
-    
+
+.toggle-dark {
+    transform: rotate(-45deg);
 }
-.navbar-sticky + .post-content {
+.navbar-sticky ~ #container {
     margin-top: $navbar-height;
 }

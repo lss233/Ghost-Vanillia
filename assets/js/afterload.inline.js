@@ -15,10 +15,41 @@ window.CDN_URL = 'https://res.cloudinary.com/dunikemu8/image/upload/kblog';
     });
     function loadContent() {
         let style = document.createElement('style');
-        style.innerText = '.afterload { display: inherit !important; } .afterload-placeholder { display: none !important; }'
+        // style.innerText = '.afterload { display: inherit !important; } .afterload-placeholder { display: none !important; }'
         document.head.appendChild(style);
         Array.prototype.forEach.call(document.getElementsByClassName('afterload-placeholder'), i => i.style.display = 'none')
-        Array.prototype.forEach.call(document.getElementsByClassName('afterload'), i => i.style.display = 'inherit')
+        Array.prototype.forEach.call(document.getElementsByClassName('afterload'), i => i.classList.remove('afterload'))
     }
     window._forceLoad = loadContent
+})();
+// Code from https://github.com/jjranalli/nightwind/blob/main/helper.js
+(function () {
+    function getInitialColorMode() {
+        const persistedColorPreference = window.localStorage.getItem('nightwind-mode');
+        const hasPersistedPreference = typeof persistedColorPreference === 'string';
+        if (hasPersistedPreference) {
+            return persistedColorPreference;
+        }
+        const mql = window.matchMedia('(prefers-color-scheme: dark)');
+        const hasMediaQueryPreference = typeof mql.matches === 'boolean';
+        if (hasMediaQueryPreference) {
+            return mql.matches ? 'dark' : 'light';
+        }
+        return 'light';
+    }
+    function toggleColorMode () {
+        if (!document.documentElement.classList.contains('dark')) {
+            document.documentElement.classList.add('dark');
+            window.localStorage.setItem('nightwind-mode', 'dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+            window.localStorage.setItem('nightwind-mode', 'light');
+        }
+        if(window._loadBackgroundImage) {
+            window._loadBackgroundImage();
+        }
+    }
+    window._sys.toggleColorMode = toggleColorMode;
+    (window._sys.colorMode = getInitialColorMode()) == 'light' ? document.documentElement.classList.remove('dark') : document.documentElement.classList.add('dark');
+    document.documentElement.classList.add('nightwind');
 })()

@@ -20,6 +20,11 @@ html, body {
     }
     &-brand {
         padding: 0.8em 0.9em;
+        .toggle-dark {
+            @media (min-width: 768px) {
+                display: none;;                
+            }
+        }
     }
     &-container {
         display: flex;
@@ -44,10 +49,12 @@ html, body {
     }
     
 }
+.navbar-dropdown {
+    display: none;
+}
 @media (min-width: 768px) {
     .navbar-dropdown {
         max-height: 0;
-        display: none;
     }
 }
 

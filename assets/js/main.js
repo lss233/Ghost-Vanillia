@@ -1,4 +1,6 @@
 let init = () => {
+    document.querySelectorAll('.toggle-dark').forEach(i => i.addEventListener('click', () => window._sys.toggleColorMode()))
+
     let breakpoint = (function () {
         let breakpoints = {
             '(min-width: 1200px)': 'xl',

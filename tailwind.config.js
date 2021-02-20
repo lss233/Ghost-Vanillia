@@ -6,15 +6,21 @@ module.exports = {
       './partials/*.hbs',
     ]
   },
-  darkMode: 'media', // or 'media' or 'class'
+  darkMode: 'class', // or 'media' or 'class'
   theme: {
+    nightwind: {
+      typography: true,
+      transitionDuration: "500ms",
+    },
     extend: {},
   },
   variants: {
-    extend: {},
+    extend: {
+    },
   },
   plugins: [
     require('@tailwindcss/typography'),
+    require("nightwind")
     // ...
   ],
 }
