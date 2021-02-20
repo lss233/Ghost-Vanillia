@@ -26,7 +26,7 @@
     <script>
         window._sys = {
             cover_image: "{{ @site.cover_image}}",
-            img_url: "{{asset 'img/'}}"
+            img_url: "{{asset '/img/'}}"
         }
     </script>
 
@@ -105,14 +105,14 @@
         <p class="copyright">&copy; {{@site.title}}. Design: <a href="https://lss233.com" target="_blank">Lss233</a>. Images: <a
                 href="https://unsplash.com">Unsplash</a>.</p>
     </section>
-    <link rel="stylesheet" type="text/css" href="{{asset 'css/main.css'}}" media="print"
+    <link rel="stylesheet" type="text/css" href="{{asset '/css/main.css'}}" media="print"
         onload="this.media='all';_forceLoad()">
     <noscript>
-        <link rel="stylesheet" href="{{asset 'css/main.css'}}" defer>
+        <link rel="stylesheet" href="{{asset '/css/main.css'}}" defer>
     </noscript>
 
-    <script src="{{asset 'js/main.js'}}"></script>
-    <script src="/assets//js/imagepatch.inline.js" inline></script>
+    <script src="{{asset '/js/main.js'}}"></script>
+    <script src="/assets/js/imagepatch.inline.js" inline></script>
     {{!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some
     JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already
     loaded. --}}

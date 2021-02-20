@@ -72,13 +72,13 @@ gulp.task('minify', () => {
                 .pipe(gulp.dest('assets/built'))
 })
 gulp.task('use-built-assets', () => gulp.src('./**/*.hbs')
-    .pipe(replace(`css/`, `built/css/`))
-    .pipe(replace(`js/`, `built/js/`))
+    .pipe(replace(`/css/`, `/built/css/`))
+    .pipe(replace(`/js/`, `/built/js/`))
     .pipe(gulp.dest('.'))
 )
 gulp.task('use-dev-assets', () => gulp.src('./**/*.hbs')
-    .pipe(replace(`built/css/`, `css/`))
-    .pipe(replace(`built/js/`, `js/`))
+    .pipe(replace(`/built/css/`, `/css/`))
+    .pipe(replace(`/built/js/`, `/js/`))
     .pipe(gulp.dest('.'))
 )
 gulp.task('inline-sources', () => gulp.src('./**/*.hbs')
@@ -101,7 +101,7 @@ gulp.task('package', gulp.series('build', () => {
         .pipe(gulp.dest(targetDir));
 }))
 gulp.task('default', (done) => {
-    gulp.watch('assets/sass/**/*', { usePolling: true, ignoreInitial: false }, gulp.series('sass'))
+    gulp.watch('assets/sass/**/*', { usePolling: true, ignoreInitial: false, interval: 1000, binaryInterval: 1000  }, gulp.series('sass'))
 })
 /*
 gulp.task('default', gulp.series(() => {
