@@ -1,4 +1,4 @@
-if(window.feedConfig !== undefined) {
+if(window.feedConfig) {
     const sourceIcon = {
         'twitter': 'twitter',
         'instagram': 'instagram',
