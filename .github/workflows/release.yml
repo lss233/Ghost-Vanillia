@@ -19,7 +19,7 @@ jobs:
           yarn
           yarn global add gulp-cli
       - name: Build files
-        run: yarn build
+        run: gulp package
       - name: Create Release
         id: create_release
         uses: actions/create-release@latest
