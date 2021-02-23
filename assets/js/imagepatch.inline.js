@@ -7,9 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
             return s.replace(window.location.origin, window.CDN_URL)
         }
     }
+    let replaceUnsplash = (s) => {
+        if(window.UNSPLASH_URL === undefined) return s;
+        return s.replace('https://images.unsplash.com', window.UNSPLASH_URL);
+    }
     document.querySelectorAll('img').forEach(el => {
         el.src = replaceSrc(el.src)
-            .replace('https://images.unsplash.com', 'https://res.cloudinary.com/dunikemu8/image/upload/unsplash');
+        el.src = replaceUnsplash(el.src)
         let srcset = el.getAttribute('srcset');
         if (srcset) {
             el.setAttribute('srcset', replaceSrc(srcset).replaceAll(window.location.origin, CDN_URL))

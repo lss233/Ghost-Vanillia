@@ -1,18 +1,12 @@
-const feedSource = {
-    server: 'https://lss233.com/feeds.php',
-    twitter: 'lss233_',
-    instagram: 'lss233_',
-    github: 'lss233',
-    ncm: '317570664'
-}
-const sourceIcon = {
-    'twitter': 'twitter',
-    'instagram': 'instagram',
-    'github': 'github',
-    'telegram': 'telegram',
-    'ncm': 'ncm',
-}
-fetch(feedSource.server + '?' + new URLSearchParams(feedSource))
+if(window.feedConfig !== undefined) {
+    const sourceIcon = {
+        'twitter': 'twitter',
+        'instagram': 'instagram',
+        'github': 'github',
+        'telegram': 'telegram',
+        'ncm': 'ncm',
+    }
+    fetch(window.feedConfig.server + '?' + new URLSearchParams(window.feedConfig))
     .then(res => res.json())
     .then(res => {
         let list = document.getElementById('user-feeds');
@@ -31,3 +25,4 @@ fetch(feedSource.server + '?' + new URLSearchParams(feedSource))
             list.append(feed);
         }
     })
+}
