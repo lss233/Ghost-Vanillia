@@ -95,7 +95,13 @@ gulp.task('package', gulp.series('build', () => {
     return gulp.src([
         '**',
         '!node_modules', '!node_modules/**',
-        '!dist', '!dist/**'
+        '!dist', '!dist/**',
+        '!*.config.js',
+        '!.gitignore',
+        '!yarn.lock',
+        '!assets/sass', '!assets/sass/**',
+        '!assets/css', '!assets/css',
+        '!assets/js', '!assets/js',
     ])
         .pipe(zip(filename))
         .pipe(gulp.dest(targetDir));
@@ -103,38 +109,3 @@ gulp.task('package', gulp.series('build', () => {
 gulp.task('default', (done) => {
     gulp.watch('assets/sass/**/*', { usePolling: true, ignoreInitial: false, interval: 1000, binaryInterval: 1000  }, gulp.series('sass'))
 })
-/*
-gulp.task('default', gulp.series(() => {
-    return gulp.series('watch')
-    /*
-    console.log('Watching files...')
-    chokidar.watch('assets/css/inline.css', { usePolling: true }).on('change', (e) => {
-        console.log(e)
-        gulp.src('assets/css/inline.css')
-            .pipe(rename({
-                dirname: 'partials',
-                basename: 'inline-style',
-                extname: '.hbs'
-            }))
-            .pipe(header('<style>\n'))
-            .pipe(footer(('\n</style>')))
-            .pipe(gulp.dest('.'))
-    })
-    chokidar.watch('./assets/sass/', { usePolling: true }).on('change', (e) => {
-        console.log(e)
-        gulp.parallel('sass')
-        gulp.src('assets/sass/inline.scss')
-            .pipe(sourcemaps.init())
-            .pipe(sass.sync().on('error', sass.logError))
-            .pipe(postcss([tailwindcss(), autoprefixer()]))
-            .pipe(sourcemaps.write())
-            .pipe(gulp.dest('assets/css'))
-        gulp.src('assets/sass/main.scss')
-            .pipe(sourcemaps.init())
-            .pipe(sass().on('error', sass.logError))
-            .pipe(postcss([tailwindcss(), autoprefixer()]))
-            .pipe(sourcemaps.write())
-            .pipe(gulp.dest('assets/css'))
-    })
-    */
-//}));
