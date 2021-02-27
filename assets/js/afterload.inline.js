@@ -1,6 +1,12 @@
 (function () {
-    window.addEventListener('load', () => Array.prototype.forEach.call(document.getElementsByClassName('afterload-placeholder'), i => i.classList.remove('afterload-placeholder')));
-    window.addEventListener('load', () => Array.prototype.forEach.call(document.getElementsByClassName('afterload'), i => i.classList.remove('afterload')));
+    function loadContent() {
+        let style = document.createElement('style');
+        document.head.appendChild(style);
+        Array.prototype.forEach.call(document.getElementsByClassName('afterload-placeholder'), i => i.style.display = 'none')
+        Array.prototype.forEach.call(document.getElementsByClassName('afterload'), i => i.classList.remove('afterload'))
+    }
+    window._forceLoad = loadContent
+    window.addEventListener('load', () => setTimeout(loadContent, 10))
     window.addEventListener('load', () => {
         if(!window._sys.postloadScript) {
             window._sys.postloadScript = [
@@ -19,14 +25,6 @@
         !function (e, t, r) { function n() { for (; d[0] && "loaded" == d[0][f];)c = d.shift(), c[o] = !i.parentNode.insertBefore(c, i) } for (var s, a, c, d = [], i = e.scripts[0], o = "onreadystatechange", f = "readyState"; s = r.shift();)a = e.createElement(t), "async" in i ? (a.async = !1, e.head.appendChild(a)) : i[f] ? (d.push(a), a[o] = n) : e.write("<" + t + ' src="' + s[0] + '" defer></' + t + ">"), a.src = s[0], a.onload = s[1] }
         (document, "script", window._sys.postloadScript)
     });
-    function loadContent() {
-        let style = document.createElement('style');
-        // style.innerText = '.afterload { display: inherit !important; } .afterload-placeholder { display: none !important; }'
-        document.head.appendChild(style);
-        Array.prototype.forEach.call(document.getElementsByClassName('afterload-placeholder'), i => i.style.display = 'none')
-        Array.prototype.forEach.call(document.getElementsByClassName('afterload'), i => i.classList.remove('afterload'))
-    }
-    window._forceLoad = loadContent
 })();
 // Code from https://github.com/jjranalli/nightwind/blob/main/helper.js
 (function () {
