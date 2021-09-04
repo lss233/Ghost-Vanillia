@@ -32,7 +32,7 @@
                     <span class="reading-time">{{reading_time}}</span>
                 </div>
             </header>
-            <section class="post-content font-sans text-base prose">
+            <section class="post-content font-sans text-base prose prose-sm sm:prose lg:prose-lg xl:prose-xl mx-auto">
                 {{content}}
             </section>
 
@@ -111,7 +111,6 @@
     {{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in
     default.hbs --}}
     {{#contentFor "scripts"}}
-    <script>
-
-    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@5.2/distr/fira_code.css"  media="print"
+        onload="this.media='all'">
     {{/contentFor}}

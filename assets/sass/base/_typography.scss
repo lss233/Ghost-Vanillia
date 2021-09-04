@@ -1,5 +1,5 @@
 .post-content {
-/*
+    /*
     // List
 
     li {
@@ -99,8 +99,18 @@
     }
 */
     max-width: 90%;
+    pre,
+    code {
+        font-family: MonoLisa, 'Fira Code', SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', Courier, monospace;
+    }
     code a {
         text-decoration: none;
         color: unset;
     }
+    /*
+    p {
+        font-size: 1.125rem;
+        line-height: 2.25rem;
+    }
+    */
 }
