@@ -1,45 +1,45 @@
 {
-  "name": "vanilla",
-  "version": "1.0.0",
-  "description": "A clean ghost theme",
-  "engines": {
-    "ghost-api": "v3"
-  },
-  "scripts": {
-    "dev": "gulp --max_old_space_size=2000",
-    "build": "gulp build",
-    "package": "gulp package"
-  },
-  "repository": "https://github.com/lss233/Ghost-Vanilla",
-  "author": {
-    "name": "Lss233",
-    "email": "i@lss233.com"
-  },
-  "license": "MIT",
-  "config": {
-    "posts_per_page": 10,
-    "image_sizes": {}
-  },
-  "devDependencies": {
-    "@tailwindcss/typography": "^0.4.0",
-    "autoprefixer": "^10.2.4",
-    "chokidar": "^3.5.1",
-    "gulp": "^4.0.2",
-    "gulp-inline-source": "^4.0.0",
-    "gulp-minifier": "^3.5.0",
-    "gulp-postcss": "^9.0.0",
-    "gulp-sass": "^4.1.0",
-    "gulp-sourcemaps": "^3.0.0",
-    "gulp-watch": "^5.0.1",
-    "gulp-zip": "^5.0.2",
-    "nightwind": "^1.1.6",
-    "node-sass": "^5.0.0",
-    "postcss": "^8.2.6",
-    "postcss-import": "^14.0.0",
-    "tailwindcss": "^2.0.3"
-  },
-  "dependencies": {
-    "feather-icons": "^4.28.0",
-    "gulp-string-replace": "^1.1.2"
-  }
+    "name": "vanilla",
+    "version": "1.0.1",
+    "description": "A clean ghost theme",
+    "engines": {
+        "ghost-api": "v3"
+    },
+    "scripts": {
+        "dev": "gulp --max_old_space_size=2000",
+        "build": "gulp build",
+        "package": "gulp package"
+    },
+    "repository": "https://github.com/lss233/Ghost-Vanilla",
+    "author": {
+        "name": "Lss233",
+        "email": "i@lss233.com"
+    },
+    "license": "MIT",
+    "config": {
+        "posts_per_page": 10,
+        "image_sizes": {}
+    },
+    "devDependencies": {
+        "@tailwindcss/typography": "^0.4.0",
+        "autoprefixer": "^10.2.4",
+        "chokidar": "^3.5.1",
+        "gulp": "^4.0.2",
+        "gulp-inline-source": "^4.0.0",
+        "gulp-minifier": "^3.5.0",
+        "gulp-postcss": "^9.0.0",
+        "gulp-sass": "^4.1.0",
+        "gulp-sourcemaps": "^3.0.0",
+        "gulp-watch": "^5.0.1",
+        "gulp-zip": "^5.0.2",
+        "nightwind": "^1.1.6",
+        "node-sass": "^5.0.0",
+        "postcss": "^8.2.6",
+        "postcss-import": "^14.0.0",
+        "tailwindcss": "^2.0.3"
+    },
+    "dependencies": {
+        "feather-icons": "^4.28.0",
+        "gulp-string-replace": "^1.1.2"
+    }
 }
