@@ -2,9 +2,7 @@
     "name": "vanilla",
     "version": "1.0.1",
     "description": "A clean ghost theme",
-    "engines": {
-        "ghost-api": "v3"
-    },
+    "keywords": ["ghost-theme", "clean"],
     "scripts": {
         "dev": "gulp --max_old_space_size=2000",
         "build": "gulp build",
@@ -28,14 +26,14 @@
         "gulp-inline-source": "^4.0.0",
         "gulp-minifier": "^3.5.0",
         "gulp-postcss": "^9.0.0",
-        "gulp-sass": "^4.1.0",
+        "gulp-sass": "^5.1.0",
         "gulp-sourcemaps": "^3.0.0",
         "gulp-watch": "^5.0.1",
         "gulp-zip": "^5.0.2",
-        "nightwind": "^1.1.6",
-        "node-sass": "^5.0.0",
+        "nightwind": "^1.1.12",
         "postcss": "^8.2.6",
         "postcss-import": "^14.0.0",
+        "sass": "^1.57.1",
         "tailwindcss": "^2.0.3"
     },
     "dependencies": {

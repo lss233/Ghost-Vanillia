@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{@site.lang}}" class="nightwind">
+<html lang="{{@site.locale}}" class="nightwind">
 
 <head>
     {{!-- Document Settings --}}
@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {{!-- Styles --}}
     {{!-- -hightlightjs styles --}}
-    <link rel="stylesheet" type="text/css" href="/assets/css/inline.css" inline>
+    <link rel="stylesheet" type="text/css" href="/assets/css/inline.css?v=" inline>
     <link rel="stylesheet" type="text/css"
         href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/tomorrow-night-bright.min.css" media="print"
         onload="this.media='all';this.onload=null;">
@@ -34,7 +34,7 @@
 
 <body class="{{body_class}} bg-gray-50 dark:bg-gray-800 bg-fixed text-gray-900 dark:text-gray-100">
     {{!-- This loads content --}}
-    <script src="/assets/js/afterload.inline.js" inline></script>
+    <script src="/assets/js/afterload.inline.js?v=" inline></script>
     {{> "site-nav" }}
     <div class="afterload-placeholder">
         <span class="loading"></span>
@@ -47,7 +47,7 @@
     </div>
 
     {{!-- The big email subscribe modal content --}}
-    {{#if @labs.members}}
+    {{#if @site.members_enabled}}
     <div class="subscribe-notification subscribe-success-message afterload">
         <a class="subscribe-close-button" href="javascript:;"></a>
         You've successfully subscribed to {{@site.title}}!
