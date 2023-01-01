@@ -1,16 +1,14 @@
 const gulp = require('gulp'),
     zip = require('gulp-zip'),
-    sass = require('gulp-sass'),
+    sass = require('gulp-sass')(require('sass')),
     minify = require('gulp-minifier'),
     postcss = require('gulp-postcss'),
     tailwindcss = require('tailwindcss'),
     sourcemaps = require('gulp-sourcemaps'),
     replace = require('gulp-string-replace'),
-    inlinesource = require('gulp-inline-source')
-autoprefixer = require("autoprefixer"),
+    inlinesource = require('gulp-inline-source'),
+    autoprefixer = require("autoprefixer"),
     chokidar = require('chokidar');
-
-sass.compiler = require('node-sass');
 
 gulp.task('env:production', done => {
     process.env.NODE_ENV = 'production';
