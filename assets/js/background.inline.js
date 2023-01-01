@@ -1,5 +1,5 @@
 (function () {
-    let cover_image = window._sys.cover_image;
+    let cover_image = window._sys.cover_image.replace(window.location.origin, '');
     if (window.CDN_URL) {
         cover_image = window.CDN_URL + cover_image;
         if (document.body.style.backdropFilter === undefined) {
