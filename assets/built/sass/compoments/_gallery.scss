@@ -1,0 +1,12 @@
+.kg-gallery-card {
+    .kg-gallery-container {
+        .kg-gallery-row {
+            @apply flex;
+            @apply flex-wrap;
+        
+            .kg-gallery-image {
+                @apply flex-1;
+            }
+        }
+    }
+}

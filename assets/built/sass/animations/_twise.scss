@@ -1,0 +1,23 @@
+@mixin animation-twise {
+    animation: animation-twise .28s;
+}
+
+@keyframes animation-twise {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(40deg);
+    }
+    50% {
+        transform: rotateX(0deg);
+    }
+
+    75% {
+        transform: rotate(-40deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+
+}

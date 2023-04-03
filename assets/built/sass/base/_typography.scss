@@ -1,0 +1,116 @@
+.post-content {
+    /*
+    // List
+
+    li {
+        list-style-position: inside;
+    }
+    ul {
+        list-style: disc;
+        li ul {
+            list-style: square;
+            li ul {
+                list-style: circle;
+            }
+        }
+    }
+    ol {
+        list-style: decimal;
+        li ol {
+            list-style: lower-alpha;
+            li ol {
+                list-style: lower-roman;
+            }
+        }
+    }
+    ul, ol {
+        padding-left: 10px;
+    }
+    li {
+        ul, ol {
+            padding-left: 20px;
+        }
+        p, img, div, figure {
+            display: inline-block;
+        }
+    }
+    
+    // Heading
+
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-serif;
+        padding-bottom: .3em;
+    }
+    h1 {
+        @apply text-4xl;
+        padding-top: 1em;
+    }
+    h2 {
+        @apply text-3xl;
+        padding-top: 0.7em;
+    }
+    h3 {
+        @apply text-2xl;
+        padding-top: 0.625em;
+    }
+    h4 {
+        @apply text-xl;
+        padding-top: 0.5em;
+    }
+    h5 {
+        @apply text-lg;
+    }
+    pre, p, .kg-card {
+        margin: 0.6em 0;
+    }
+
+    // Table
+    table {
+        @apply min-w-full;
+        @apply divide-y;
+        @apply divide-gray-200;
+
+        thead {
+            @apply bg-gray-50;
+            tr {
+                th {
+                    @apply px-6;
+                    @apply py-3;
+                    @apply text-left;
+                    @apply text-xs;
+                    @apply font-medium;
+                    @apply text-gray-500;
+                    @apply uppercase;
+                    @apply tracking-wider;
+                }
+            }
+        }
+        tbody {
+            @apply divide-y;
+            @apply divide-gray-200;
+            tr:nth-child(even) {
+                @apply bg-gray-100;
+            }
+            tr {
+                @apply px-6;
+                @apply py-4;
+            }
+        }
+    }
+*/
+    max-width: 90%;
+    pre,
+    code {
+        font-family: MonoLisa, 'Fira Code', SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', Courier, monospace;
+    }
+    code a {
+        text-decoration: none;
+        color: unset;
+    }
+    /*
+    p {
+        font-size: 1.125rem;
+        line-height: 2.25rem;
+    }
+    */
+}
