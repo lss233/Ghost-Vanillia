@@ -8,6 +8,7 @@
         "build": "gulp build",
         "package": "gulp package"
     },
+    "card_assets": false,
     "repository": "https://github.com/lss233/Ghost-Vanilla",
     "author": {
         "name": "Lss233",
